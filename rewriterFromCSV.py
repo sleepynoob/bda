@@ -111,14 +111,10 @@ class RewriterFromCSV(object):
         f : Flight
         associations :list
         try:
-            #cover_v_R = {}
-            #cover_v_Rv = {} 
             associations = {}
             R = []
             Rv = []
             v_list = []
-            #len_Rv = 0 
-            #len_R = 0
             with open(self.dataFile, 'r') as source: 
                 for line in source :
                     line = line.strip()
@@ -126,17 +122,6 @@ class RewriterFromCSV(object):
                         f = Flight(line, self.vocabulary)
                         dic = f.rewrite()
                         v_list = dic.keys()
-                        #for v_ in dic.keys(): 
-                        #    if v_ not in cover_v_R: 
-                        #        cover_v_R[v_] = 0
-                        #    if v_ not in cover_v_Rv:
-                        #         cover_v_Rv[v_] = 0
-                        #    cover_v_R[v_] += dic[v_]
-                        #    if dic[v]>mindeg:
-                        #        cover_v_Rv[v_] += dic[v_]
-                        #if dic[v]>mindeg:
-                        #    len_Rv += 1 
-                        #len_R += 1
                         R += [dic]
                         if dic[v]>mindeg:
                             Rv += [dic]
@@ -176,17 +161,6 @@ class RewriterFromCSV(object):
                         voc = f.vocabulary
                         dic = f.rewrite()
                         v_list = dic.keys()
-                        #for v_ in dic.keys(): 
-                        #    if v_ not in cover_v_R: 
-                        #        cover_v_R[v_] = 0
-                        #    if v_ not in cover_v_Rv:
-                        #         cover_v_Rv[v_] = 0
-                        #    cover_v_R[v_] += dic[v_]
-                        #    if dic[v]>mindeg:
-                        #        cover_v_Rv[v_] += dic[v_]
-                        #if dic[v]>mindeg:
-                        #    len_Rv += 1 
-                        #len_R += 1
                         R += [dic]
                         if dic[v]>mindeg:
                             Rv += [dic]
@@ -242,11 +216,8 @@ if __name__ == "__main__":
                 rw : RewriterFromCSV = RewriterFromCSV(voc, sys.argv[2])
                 #rw.readAndRewrite()
                 #rw.degreesOfBelonging()
-                rw.suprising_terms("DayOfWeek.end", 0)
-
-                # record results into a JSON file
-                #with open("results-"+sys.argv[2]+".json"", "w") as outfile:
-                #    json.dump(results, outfile, indent=4))
+                #rw.association_rules("DayOfWeek.end", 0)
+                #rw.suprising_terms("DayOfWeek.end", 0)
             else:
                 print(f"Data file {sys.argv[2]} not found")
         
